@@ -1,0 +1,9 @@
+{{object.title}}
+{{object.slug}}
+{{ object.description|default:"" }}
+{{object.category}}
+{{object.main_link}}
+{{object.sub_link}}
+{{object.tag_id}}
+{{object.published}}
+{{object.updated}}

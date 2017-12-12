@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block head_injections %}
+        {{ block.super }} 
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-sm-12 col-md-12" style="background: #fff;padding: 40px;box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.3);overflow:hidden;margin-bottom: 28px;">
+        <h2 class="product-title" style="color: #333;padding: 0px 0px 14px;border-bottom: 1px solid #dddddd;">
+            {{object.title}} 
+                <span class="twitter">
+                    <a href="https://twitter.com/home?status={{ instance.content|truncatechars:80 }}%20{{ request.build_absolute_uri }}">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                </span>
+            <span class="fb">
+                <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true">
+              
+                </div>
+            </span>
+        </h2>
+        <div class="product-information" style="color: #333;">
+            <h4>
+                Feed URL: 
+                <button class="btn btn-sm" style="width: auto;max-width: 90%;max-height: 600px;overflow: hidden;margin-bottom: 1em;padding: 5px 10px;line-height: 1.5;border-radius: 3px;font-size: 13px;background-color: #eff0f1;">
+                    <a target="_blank" href="{{ object.main_link }}" style="text-decoration: none;">
+                        {{object.main_link}}
+                    </a>
+                </button>
+            </h4>
+            <h4>
+               Feed Info: 
+               <button class="btn btn-sm" style="margin-left: 5px;width: auto;max-width: 90%;max-height: 600px;overflow: hidden;margin-bottom: 1em;padding: 5px 10px;line-height: 1.5;border-radius: 3px;font-size: 13px;background-color: #eff0f1;">
+                    <a target="_blank" href="{{ object.sub_link }}" style="text-decoration:none;">
+                        {{object.sub_link}}
+                    </a>
+                </button>
+            </h4>
+            {% if object.category %}
+                <h5 style="margin: 18px 0">
+                    category: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 26px;">{{object.category}}</b>
+                </h5>
+            {% else %}
+                <h5 style="margin: 18px 0">
+                    category: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 26px;">None</b>
+                </h5>
+            {% endif %}
+
+            {% if object.published %}
+            <h5 style="margin: 18px 0">
+                Published: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 19px;">{{object.published}}</b>
+            </h5>
+            {% else %}
+               <h5 style="margin: 18px 0"> Published: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 26px;">None</b></h5>
+            {% endif %}
+
+            {% if object.updated %}
+            <h5 style="margin: 18px 0">
+                updated: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 30px;">{{object.updated}}</b>
+            </h5>
+            {% else %}
+               <h5 style="margin: 18px 0"> updated: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 30px;">None</b></h5>
+            {% endif %}
+
+
+            {% if object.tag_id %}
+                <h5 style="margin: 18px 0">
+                    Id: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 69px;">{{object.tag_id}}</b>
+                </h5>
+            {% else %}
+
+                <h5 style="margin: 18px 0">
+                    id: <b style="font-size: 13px;background-color: #eff0f1;margin-bottom: 1em;padding: 5px;margin-left: 26px;">None</b>
+                </h5>
+            {% endif %}
+
+            {% if object.description %}
+                <h5 style="margin: 18px 0"> Description:</h5> <b>{{ object.description|safe }}</b>
+            {% else %}
+            <h5 style="margin: 18px 0"> Description:</h5> 
+                <b>None</b>
+            {% endif %}
+                
+       </div>
+    </div>
+
+    
+</div>
+{% endblock %}
+
+
+
+{% block extrascripts %}
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block head_injections %}
+        {{ block.super }} 
+{% endblock %}
+
+{% block base_feed %}
+
+<section style="margin: 40px 0">
+	<div class="container">
+
+	    <div class="row">
+
+	        <div class="col-sm-12 col-md-12">
+	        	<h5>
+	        		<a href="/feed_list/">Back</a>
+	        	</h5>
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+	                    <h4>Add New feed</h4>
+	                   	<div class="create_fields col-md-12">
+							<form action="" method="post">
+							    {% for field in form %}
+							    	{% csrf_token %}
+							        <div class="fieldWrapper">
+							            {{ field.errors }}
+							            {{ field.label_tag }} {{ field }}
+							        </div>
+							    {% endfor %}
+							    <p><input type="submit"  class="btn btn-primary btn-sm" value="create" " /></p>
+							</form>
+	                   	</div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+    <head>
+        <title> RssFeed Search</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <!-- Fav_Icons -->
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/nav.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}" />
+        <link rel="stylesheet" type="text/css" href="{% static "css/autocomplete.css" %}" />
+        {% block head_injections %} 
+
+        {% endblock %}
+    </head>
+    <body>
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="wrapper" style="width: 100%;max-width: 100%;display: block;">
+            <div class="container-fluid">
+                {% block layout %}
+
+                {% endblock %}
+
+                {% block base_feed %}
+
+                {% endblock %}
+
+            </div>
+        </div>
+        {% block footer_injections %}
+            <script src="{% static 'js/bootstrap.js' %}"></script>
+            <script type="text/javascript" src="{% static 'js/nav.js' %}"></script>
+        {% endblock %}    
+    </body>
+</html>

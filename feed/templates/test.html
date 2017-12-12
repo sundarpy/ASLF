@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block head_injections %}
+	{{ block.super }}        
+	<link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.css" %}" />
+	<link rel="stylesheet" type="text/css" href="{% static "css/autocomplete.css" %}" />
+{% endblock %}
+
+{% block base_feed %}
+<section style="margin: 40px 0">
+	<div class="container">
+
+	    <div class="row">
+
+	        <div class="col-sm-12 col-md-12">
+	        	<h5>
+	        		<a href="/" style="text-decoration: none;">Home</a>
+	        	</h5>
+	            <div class="panel panel-default">
+	                <div class="panel-body">
+	                	<table>
+						    <tr>
+						        <th>Title</th>
+						        <th>Link</th>
+						        <th>Published</th>
+						    </tr>
+						    {% for entry in addfeed %}
+						        <tr>
+						            <td>{{ entry.blog_title }}</td>
+						            <td>{{ entry.blog_link }}</td>
+						            <td>{{ entry.blog_published }}</td>
+						            <td>{{entry.name}}</td>
+						        </tr>
+						    {% endfor %}
+						</table>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</section>
+{% endblock %}

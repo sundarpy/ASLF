@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block head_injections %}
+        {{ block.super }} 
+{% endblock %}
+
+{% block base_feed %}
+
+
+<section style="margin: 40px 0px ">
+	<div class="container">
+		<div class="row">
+
+	        <div class="col-sm-12">
+
+	            <div class="panel panel-default">
+	            	<h3 style="text-align: center;font-weight: 600;">
+	            			Base Feed URL
+	        		</h3>
+	                <div class="panel-body">
+	                    <table class="table">
+	                        <thead>
+	                            <tr>
+	                                <th>Feed Lists</th>
+	                                <th></th>
+	                                <th><a href="/url_view/" class="btn btn-primary" role="button" style="text-decoration: none;">Push</a></th>
+	                                <th>
+	                                	<a href="{% url 'feed_new' %}" class="btn btn-primary" role="button" style="text-decoration: none;">Add New Feed</a>
+	                                </th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+		                            {% for addfeed in object_list %}
+		                                <tr>
+		                                    <td>
+		                                    	<a href="{{addfeed.url }}" target="_blank" style="text-decoration: none;">{{ addfeed.url }}</a>
+		                                    </td>
+		                                    <td>
+		                                    	 <a href="{% url 'feed_edit' addfeed.id %}">
+		                                            <button type="button" class="btn btn-info">
+		                                            	<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+		                                        		Edit
+		                                    		</button>
+		                                        </a>
+		                                    </td>
+		                                    <td>
+		                                        <a href="{% url 'feed_delete' addfeed.id %}">
+		                                        	<button type="button" class="btn btn-info">
+		                                        		<i class="fa fa-trash" aria-hidden="true"></i>
+		                                        		Delete
+		                                        	</button>
+		                                        </a>
+		                                    </td>
+		                                </tr>
+		                            {% endfor %}
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+
+	        </div>
+
+	    </div>
+    </div>
+</section>
+
+{% endblock %}

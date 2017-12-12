@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+{% block title %}
+    "{{ query }}" | {{ block.super }}
+{% endblock %}
+
+
+    
+{% block content %}
+
+<div class="list-page">
+    <div class="row">
+        {% if  page_obj.object_list %}
+            <div class="col-md-2">
+                <div class="filter" style="display: block;padding: 12px;box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.04);transition: box-shadow .3s ease-in-out;background-color: #f7f7f7;">
+                        <!--<h4>Filters</h4>-->
+                            <dl>
+                                {% if facets.fields.category %}
+                                <dt>Category</dt>
+                                    {% for category in facets.fields.category %}
+
+                                        {% if category.1 != 0 %}
+
+                                            <dd style="font-size: 12px;font-weight: 400;line-height: 22px">
+                                                <input class="facet" id="{{category.0|cut:" "}}" type="checkbox" name="category" value="{{ category.0 }}" 
+                                            data-toggle="toggle" /> {{ category.0 }} ({{ category.1 }})
+                                            </dd>
+                                        {% endif %}
+
+                                    {% endfor %}
+                                {% endif %}
+                            </dl>
+                            <div>
+                                <input class="btn btn-info btn-sm" type="submit" value="Apply filter" onclick="return onFacetChangeApplied();" />
+                            </div>
+                </div>
+            </div>
+        {% endif %}
+            <div class="col-md-10">
+                <div class="row">
+                    <div class="col-md-9 col-xs-6">
+                          Search result for: <label> {{query}} </label>
+                   </div>
+                   <div class="col-md-3 col-xs-6 align-right">
+                   
+                       Showing {{ page_obj.start_index }} - {{ page_obj.end_index }} of total 
+                        {{ page_obj.paginator.count }}
+                        results on page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                   </div>
+                </div>    
+                <div class="content-pages">
+                   {% if  page_obj.object_list %}
+                        <ol class="row top20">
+                            {% for result in page_obj.object_list %}
+                                
+                            <div class="showcase col-sm-6 col-md-12" style="box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.04);padding: 16px;margin: 10px 0;">
+                               <a href="{{ result.object.get_absolute_url }}" style="text-decoration: none;">
+                                  <h3 style="border-radius: 4px;background-color: #eff0f1;color: #333;padding: 4px 8px;margin: 0 0 6px;vertical-align: top;font-weight: 500;font-size: 18px;line-height: 24px;">
+                                        {{result.object.title}}
+                                        &nbsp; &nbsp;
+                                        <small style="color: #333;">
+                                            {% if result.object.published %}
+                                                    [ <b>Date:</b> {{result.object.published}} ]
+                                                </h5>
+                                            {% else %}
+                                                   
+                                            {% endif %}
+                                        </small>
+                                    </h3>
+                               </a>
+                                <a target="_blank" href="{{ result.object.sub_link }}" style="text-decoration: none;font-size: 12px;line-height: 18px;">
+                                    {{result.object.sub_link}}
+                                </a>
+                                <!-- <p>
+                                  <a target='_blank' data-href="{{ request.build_absolute_uri }}" data-show-faces="true" data-share="true" class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+                                   <a href="https://twitter.com/home?status={{ instance.content|truncatechars:80 }}%20{{ request.build_absolute_uri }}">
+Twitter
+</a>
+                                </p> -->
+                            </div>
+
+                            {% endfor %}
+                        </ol>
+                </div>
+                        {% if is_paginated %}
+                          <ul class="pagination pull-right">
+                            {% if page_obj.has_previous %}
+                              <li><a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a></li>
+                            {% else %}
+                              <li class="disabled"><span>&laquo;</span></li>
+                            {% endif %}
+                            {% for i in paginator.page_range %}
+                              {% if page_obj.number == i %}
+                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                              {% else %}
+                                <li><a href="?q={{ query }}&page={{ i }}">{{ i }}</a></li>
+                              {% endif %}
+                            {% endfor %}
+                            {% if page_obj.has_next %}
+                              <li><a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a></li>
+                            {% else %}
+                              <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
+                          </ul>
+                        {% endif %}
+
+                        {% else %}
+                           <p> Sorry, No result found for the search term  <strong>{{query}} </strong></p>
+                   {% endif %}
+            </div>
+    </div>
+</div>
+    
+{% endblock %}
+    
+
+<!--         <dl>
+
+        {% if facets.fields.main_link %}
+        <dt>Filter by Date</dt>
+        {% for main_link in facets.fields.main_link %}
+        {% if main_link.1 != 0 %}
+        <dd>
+        <input class="facet" id="{{main_link.0|cut:" "}}" type="checkbox" name="main_link" value="{{ main_link.0 }}" /> {{ main_link.0 }} ({{ main_link.1 }})
+        </dd>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        </dl> -->
+       <!--  <div>
+        <input class="btn btn-info btn-sm pull-right" type="submit" value="apply filter" onclick="return onFacetChangeApplied();" />
+    
+        </div> -->

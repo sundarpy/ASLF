@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load staticfiles %}
+
+{% block head_injections %}
+        {{ block.super }} 
+{% endblock %}
+
+{% block base_feed %}
+<section style="margin: 40px 0">
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<form method="post">{% csrf_token %}
+				   <strong> Are you sure you want to delete &nbsp;" {{ object }} " &nbsp;?</strong>
+				     <input type="submit"  class="btn btn-danger btn-xs" value="yes" style="text-decoration: none;color: #fff;width: 5%;max-width: 100%;"/>
+				     <button  class="btn btn-success btn-xs" style="width: 5%;max-width: 100%;">
+				     	<a href="/feed_list/" style="text-decoration: none;color: #fff;">No</a>
+				     </button>
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+</section>
+{% endblock %}

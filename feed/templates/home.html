@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+	<div class="jumbotron">
+	    <div class="panel panel-default">
+	    	<div class="panel panel-body">
+    		 	<table class="table">
+                    <thead>
+                        <tr>
+                            <th style="font-weight: 600">Recent Updated Feed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for addfeed in object_list %}
+                            <tr>
+                                <td>
+                                	<a href="{{addfeed.url }}" target="_blank" style="text-decoration: none;">{{ addfeed.url }}</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+	    	</div>
+	    </div>
+	</div>
+</div>
+{% endblock %}
