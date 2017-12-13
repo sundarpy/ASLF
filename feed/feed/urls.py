@@ -17,6 +17,6 @@ urlpatterns = [
     url(r'^edit/(?P<pk>\d+)$', views.feed_update, name='feed_edit'),
   	url(r'^delete/(?P<pk>\d+)$', views.feed_delete, name='feed_delete'),
 
-  	url(r'url_view/', views.url_view, name="url_view" )
+  	# url(r'url_view/', views.url_view, name="url_view" )
     
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)	

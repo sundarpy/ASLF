@@ -24,13 +24,22 @@
 	                            <tr>
 	                                <th>Feed Lists</th>
 	                                <th></th>
-	                                <th><a href="/url_view/" class="btn btn-primary" role="button" style="text-decoration: none;">Push</a></th>
+	                                <th></th>
 	                                <th>
 	                                	<a href="{% url 'feed_new' %}" class="btn btn-primary" role="button" style="text-decoration: none;">Add New Feed</a>
 	                                </th>
 	                            </tr>
 	                        </thead>
 	                        <tbody>
+
+	                        	{% for message in messages %}
+								    {% if 'Thank you for your message' in message.message %}
+								        {{ message }}
+								    {% else %}
+								        <!-- {{ message }} -->
+								    {% endif %}
+								{% endfor %}
+								
 		                            {% for addfeed in object_list %}
 		                                <tr>
 		                                    <td>

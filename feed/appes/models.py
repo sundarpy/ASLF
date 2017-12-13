@@ -6,6 +6,7 @@ from django.db import models
 from django.urls.base import reverse
 from django.core.urlresolvers import reverse
 from autoslug import AutoSlugField
+import uuid
 
 
 
