@@ -9,7 +9,7 @@ from .models import Myfeed
 class MyfeedIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(
         document=True, use_template=True,
-        template_name='/home/sundar/Desktop/ASLF/feed/templates/search/indexes/myfeed_text.txt')
+        template_name='/home/aptus/rssfeeds/ASLF/feed/templates/search/indexes/myfeed_text.txt')
     title = indexes.EdgeNgramField(model_attr='title')
     slug = indexes.EdgeNgramField(model_attr='slug', null=True)
     description = indexes.EdgeNgramField(model_attr="description", null=True)

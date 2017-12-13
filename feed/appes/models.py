@@ -12,13 +12,6 @@ import uuid
 
 #===============Myfeed==================#
 
-# class Sublink(models.Model):
-# 	blog_name = models.CharField(unique=True, db_index=True, default='', null=True, blank=True, max_length=255)
-
-# 	def __unicode__(self):
-# 		return str(self.blog_name)
-
-
 class Myfeed(models.Model):
     title = models.CharField(max_length=512, blank=True, null=True, default='')
     slug = AutoSlugField(unique=True, populate_from='title', null=True, blank=True)

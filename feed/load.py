@@ -36,7 +36,6 @@ def My_Feed(file_obj):
                 else:
                     pass
     for each in fil_links:
-        # print(each)
         d = feedparser.parse(each)
         nls_feed = []
         for item in d['items']:
@@ -77,13 +76,11 @@ def My_Feed(file_obj):
                 myfeed.main_link = each
                 myfeed.description = deatil
                 myfeed.title = ts_feed
-                # myfeed.slug = ts_feed
                 myfeed.sub_link = ls_feed
                 myfeed.updated = updates
                 myfeed.tag_id = id_feed
                 myfeed.published = p_feed
                 myfeed.save()
-               # print(myfeed)
                 i += 1
                 
                 #======================#
@@ -91,7 +88,7 @@ def My_Feed(file_obj):
                 pass
     return fil_links
 def refeed():
-    with open('/home/sundar/Desktop/ASLF/feed/app.csv', 'a+') as f_obj:
+    with open('/home/aptus/rssfeeds/ASLF/feed/import.csv', 'a+') as f_obj:
         My_Feed(f_obj)
 
 # def duplicate():
@@ -107,4 +104,4 @@ if __name__ == "__main__":
     #     schedule.run_pending()
     #     time.sleep(1)
 
-#1373.data==============================Updated.1.apts#
+#==============================Updated.6.2.apts#
